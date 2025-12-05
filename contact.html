@@ -20,16 +20,16 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="logo-text">PHILABAG</span>
+                <a href="index.html">
+                    <img src="images/philabag_logo_new.png" alt="PhilaBag" class="logo-img">
                 </a>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">HOME</a></li>
                 <li><a href="about.html" class="nav-link">ABOUT</a></li>
                 <li><a href="news.html" class="nav-link">NEWS</a></li>
-                <li><a href="donate.html" class="nav-link">DONATE</a></li>
                 <li><a href="contact.html" class="nav-link active">CONTACT</a></li>
+                <li><a href="donate.html" class="nav-link">DONATE</a></li>
                 <li><a href="why-it-matters.html" class="nav-link">WHY IT MATTERS</a></li>
             </ul>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
@@ -42,7 +42,7 @@
 
     <!-- Hero Section -->
     <section class="hero"
-        style="background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('hero_community_gathering.png');">
+        style="background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('images/hero_image.JPG');">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -54,10 +54,32 @@
     <!-- Contact Content Section -->
     <section class="contact-section" style="padding: 80px 0;">
         <div class="container">
-            <p
-                style="text-align: center; font-size: 1.2rem; color: #2D5245; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Content coming soon. We'll provide contact information and ways to reach out to our team.
-            </p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title-alt">GET IN TOUCH</h2>
+                    <p class="contact-description">Ready to make a difference in your neighborhood? We'd love to hear
+                        from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:philabagnp@gmail.com"
+                                style="text-decoration: underline;">philabagnp@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">SEND MESSAGE</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -66,7 +88,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span class="logo-text">PHILABAG</span>
+                    <a href="index.html">
+                        <img src="images/philabag_logo_new.png" alt="PhilaBag" class="footer-logo-img">
+                    </a>
                 </div>
                 <div class="footer-social">
                     <h3>CONNECT WITH US</h3>
@@ -104,4 +128,3 @@
     <script src="script.js"></script>
 </body>
 
-</html>

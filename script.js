@@ -37,6 +37,8 @@ let ticking = false;
 
 function updateScrollState() {
     const scrollY = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
 
     // Navbar Scroll Effect
     if (scrollY > 100) {
@@ -46,19 +48,47 @@ function updateScrollState() {
     }
 
     // Active Navigation Highlighting
+    let currentSection = null;
+    
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
         const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) {
-                navLink.classList.add('active');
-            }
+        
+        // Check if we're in this section
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            currentSection = section;
         }
     });
+
+    // If we're near the bottom of the page, activate the last section
+    if (scrollY + windowHeight >= documentHeight - 50) {
+        const lastSection = sections[sections.length - 1];
+        if (lastSection) {
+            currentSection = lastSection;
+        }
+    }
+
+    // Update active nav link
+    if (currentSection) {
+        const sectionId = currentSection.getAttribute('id');
+        let navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+        
+        // Special case: if section is "news" and we're on homepage, check for news.html link
+        if (!navLink && sectionId === 'news') {
+            const isHomePage = window.location.pathname.includes('index.html') || 
+                              window.location.pathname === '/' || 
+                              window.location.pathname.endsWith('/');
+            if (isHomePage) {
+                navLink = document.querySelector(`.nav-link[href="news.html"]`);
+            }
+        }
+
+        if (navLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            navLink.classList.add('active');
+        }
+    }
 
     ticking = false;
 }
@@ -69,6 +99,9 @@ window.addEventListener('scroll', () => {
         ticking = true;
     }
 });
+
+// Initial call to set active state on page load
+updateScrollState();
 
 // ===================================
 // SOCIAL MEDIA CAROUSEL
