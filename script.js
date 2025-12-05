@@ -46,17 +46,28 @@ function updateScrollState() {
     }
 
     // Active Navigation Highlighting
-    sections.forEach(section => {
+    let currentSection = '';
+    sections.forEach((section, index) => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) {
-                navLink.classList.add('active');
-            }
+        // Check if we're in this section
+        // For the last section, also check if we're near the bottom of the page
+        const isLastSection = index === sections.length - 1;
+        const isInSection = scrollY >= sectionTop && (isLastSection ? scrollY < sectionTop + sectionHeight + 200 : scrollY < sectionTop + sectionHeight);
+
+        if (isInSection && navLink) {
+            currentSection = sectionId;
+        }
+    });
+
+    // Update active state for all nav links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (currentSection && link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
         }
     });
 
