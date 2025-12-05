@@ -618,6 +618,7 @@ body {
 
 .news-card:hover .news-image {
     transform: scale(1.05);
+    background-size: contain !important;
 }
 
 .news-content {
