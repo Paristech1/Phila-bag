@@ -48,16 +48,28 @@ function updateScrollState() {
     }
 
     // Active Navigation Highlighting
-    let currentSection = null;
-    
-    sections.forEach(section => {
+    let currentSection = '';
+    sections.forEach((section, index) => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
         const sectionId = section.getAttribute('id');
-        
+        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+
         // Check if we're in this section
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            currentSection = section;
+        // For the last section, also check if we're near the bottom of the page
+        const isLastSection = index === sections.length - 1;
+        const isInSection = scrollY >= sectionTop && (isLastSection ? scrollY < sectionTop + sectionHeight + 200 : scrollY < sectionTop + sectionHeight);
+
+        if (isInSection && navLink) {
+            currentSection = sectionId;
+        }
+    });
+
+    // Update active state for all nav links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (currentSection && link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
         }
     });
 
@@ -65,28 +77,21 @@ function updateScrollState() {
     if (scrollY + windowHeight >= documentHeight - 50) {
         const lastSection = sections[sections.length - 1];
         if (lastSection) {
-            currentSection = lastSection;
+            // Optionally update currentSection here if logic requires
         }
     }
 
-    // Update active nav link
+    // Update active nav link (Legacy support if needed or additional logic)
     if (currentSection) {
-        const sectionId = currentSection.getAttribute('id');
-        let navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-        
         // Special case: if section is "news" and we're on homepage, check for news.html link
-        if (!navLink && sectionId === 'news') {
+        if (currentSection === 'news') {
             const isHomePage = window.location.pathname.includes('index.html') || 
                               window.location.pathname === '/' || 
                               window.location.pathname.endsWith('/');
             if (isHomePage) {
-                navLink = document.querySelector(`.nav-link[href="news.html"]`);
+                const newsLink = document.querySelector(`.nav-link[href="news.html"]`);
+                if (newsLink) newsLink.classList.add('active');
             }
-        }
-
-        if (navLink) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            navLink.classList.add('active');
         }
     }
 
