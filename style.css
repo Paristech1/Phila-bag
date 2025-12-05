@@ -94,13 +94,15 @@ body {
     align-items: center;
 }
 
-.logo-text {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--light-text);
-    line-height: 1.1;
-    letter-spacing: 0.5px;
+.logo-img {
+    height: 70px;
+    width: auto;
+    transition: transform var(--transition-fast);
+    filter: brightness(0) invert(1);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -367,13 +369,38 @@ body {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('about_community_circle.png');
+    background: url('about_community_circle.png');
     background-size: cover;
     background-position: center;
-    background-blend-mode: multiply;
     box-shadow: var(--shadow-xl);
     transition: transform var(--transition-smooth);
     animation: float 6s ease-in-out infinite;
+    border: 4px solid var(--sage-green);
+}
+
+.more-info-button {
+    display: inline-block;
+    background-color: var(--forest-green);
+    color: var(--light-text);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    letter-spacing: 1px;
+    margin-top: var(--spacing-lg);
+}
+
+.more-info-button:hover {
+    background-color: var(--sage-green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--light-text);
 }
 
 @keyframes float {
@@ -754,8 +781,15 @@ body {
     text-align: center;
 }
 
-.footer-logo .logo-text {
-    font-size: 1rem;
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: transform var(--transition-fast);
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.05);
 }
 
 .footer-social h3 {
