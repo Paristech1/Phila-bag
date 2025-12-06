@@ -280,14 +280,36 @@ body {
     font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 800;
     color: var(--light-text);
-    line-height: 1.1;
+    line-height: 1.2;
     margin-bottom: var(--spacing-lg);
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-philabag {
+    background: linear-gradient(to right, #e6d5b8 50%, var(--light-text));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    padding-right: 0.1em;
+    /* Prevent clipping of italic/gradient edge */
+}
+
+.highlight-watershed {
+    background: linear-gradient(to right, var(--light-text) 20%, #e6d5b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    opacity: 1;
+    animation: none;
+    padding-right: 0.1em;
 }
 
 .title-line {
     display: block;
     animation: slideIn 0.8s ease-out backwards;
+    margin-bottom: 0.5rem;
 }
 
 .title-line:nth-child(2) {
@@ -1069,6 +1091,7 @@ section {
         height: 20px;
     }
 }
+
 /* About Page Styles */
 .about-features-grid {
     display: grid;
@@ -1106,5 +1129,95 @@ section {
 @media (max-width: 768px) {
     .about-features-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===================================
+   TEAM SECTION
+   =================================== */
+.team-container {
+    padding: var(--spacing-lg) 0;
+}
+
+.team-separator {
+    border: 0;
+    height: 1px;
+    background-color: rgba(45, 82, 69, 0.2);
+    margin: var(--spacing-lg) 0;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.team-member-img-wrapper {
+    flex-shrink: 0;
+    width: 250px;
+    height: 250px;
+}
+
+.team-member-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--sage-green);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-smooth);
+}
+
+.team-member:hover .team-member-img {
+    transform: scale(1.05);
+}
+
+.team-member-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    margin-bottom: 0.25rem;
+}
+
+.team-member-role {
+    display: block;
+    color: var(--forest-green);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.team-member-bio {
+    color: var(--dark-text);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Reverse layout for even items */
+.team-member:nth-of-type(even) {
+    flex-direction: row-reverse;
+    text-align: left;
+    /* Keep text aligned left for better readability, or right if preferred */
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+
+    .team-member:nth-of-type(even) {
+        flex-direction: column;
+    }
+
+    .team-member-img-wrapper {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
     }
 }
