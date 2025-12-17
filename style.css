@@ -550,13 +550,16 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    /* Prevent the image from forcing the grid row to become huge on small screens */
+    max-width: 380px;
+    margin: 0 auto;
 }
 
 .donate-feature-image {
     width: 100%;
-    max-width: 350px; /* Constrain width */
+    max-width: 380px; /* Constrain width */
     height: auto;
-    max-height: 500px; /* Constrain height */
+    max-height: 420px; /* Constrain height */
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
     object-fit: contain;
@@ -566,7 +569,8 @@ body {
 
 @media (max-width: 968px) {
     .donate-feature-image {
-        max-width: 300px;
+        max-width: 320px;
+        max-height: 320px;
         margin-top: var(--spacing-md);
     }
 }
