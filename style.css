@@ -144,6 +144,40 @@ body {
     color: var(--warm-beige);
 }
 
+/* About Nav Link - Orange Flair */
+.nav-link-about {
+    position: relative;
+}
+
+.nav-link-about::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #FF6B35;
+    border-radius: 50%;
+    animation: orange-dot-pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+}
+
+.nav-link-about:hover::before {
+    animation: orange-dot-pulse 1s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(255, 107, 53, 0.8);
+}
+
+@keyframes orange-dot-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
 /* Dropdown Menu Styles */
 .nav-dropdown {
     position: relative;
@@ -1261,5 +1295,178 @@ section {
         width: 200px;
         height: 200px;
         margin: 0 auto;
+    }
+}
+
+/* ===================================
+   IMPACT REPORT CALL-TO-ACTION
+   =================================== */
+
+/* Animated Ticker Banner (About Page) */
+.impact-ticker-banner {
+    background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+    color: var(--light-text);
+    padding: 1rem 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.ticker-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: ticker-scroll 20s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-icon {
+    font-size: 1.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.ticker-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.ticker-link {
+    color: var(--warm-beige);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    transition: all var(--transition-fast);
+    margin-left: 0.5rem;
+}
+
+.ticker-link:hover {
+    color: var(--light-text);
+    text-decoration-color: var(--light-text);
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Impact Report Sticker - Corner Position (Home Page) */
+.impact-sticker-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.impact-sticker-corner {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+    color: var(--light-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+    transition: all var(--transition-smooth);
+    white-space: nowrap;
+    animation: corner-sticker-pulse 2s ease-in-out infinite;
+}
+
+.impact-sticker-corner:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+    background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+}
+
+.impact-sticker-corner:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+@keyframes corner-sticker-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 24px rgba(255, 107, 53, 0.6);
+    }
+}
+
+/* Download Report Button */
+.download-report-button {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+    color: var(--light-text);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-smooth);
+    letter-spacing: 0.5px;
+}
+
+.download-report-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--forest-green) 100%);
+}
+
+.download-report-button svg {
+    display: inline-block;
+}
+
+/* Impact Stat Cards Hover Effect */
+.impact-stat-card {
+    transition: all var(--transition-smooth);
+}
+
+.impact-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--sage-green);
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+    .ticker-text {
+        font-size: 0.9rem;
+    }
+    
+    .impact-sticker-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        margin-top: 1.5rem;
+    }
+    
+    .impact-sticker-corner {
+        font-size: 0.85rem;
+        padding: 0.65rem 1.25rem;
+    }
+    
+    .about-section .container {
+        position: relative;
     }
 }
