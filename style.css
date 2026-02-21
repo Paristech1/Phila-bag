@@ -144,12 +144,12 @@ body {
     color: var(--warm-beige);
 }
 
-/* About Nav Link - Orange Flair */
-.nav-link-about {
+/* Our Journey Nav Link - Attention Indicator */
+.nav-link-journey {
     position: relative;
 }
 
-.nav-link-about::before {
+.nav-link-journey::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -162,7 +162,7 @@ body {
     box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
 }
 
-.nav-link-about:hover::before {
+.nav-link-journey:hover::before {
     animation: orange-dot-pulse 1s ease-in-out infinite;
     box-shadow: 0 0 12px rgba(255, 107, 53, 0.8);
 }
@@ -1376,7 +1376,7 @@ section {
 .impact-sticker-corner {
     position: relative;
     display: inline-block;
-    background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+    background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
     color: var(--light-text);
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -1384,7 +1384,7 @@ section {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.95rem;
-    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 4px 16px rgba(45, 82, 69, 0.4);
     transition: all var(--transition-smooth);
     white-space: nowrap;
     animation: corner-sticker-pulse 2s ease-in-out infinite;
@@ -1392,8 +1392,8 @@ section {
 
 .impact-sticker-corner:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-    background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+    box-shadow: 0 6px 20px rgba(45, 82, 69, 0.6);
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--forest-green) 100%);
 }
 
 .impact-sticker-corner:active {
@@ -1402,10 +1402,10 @@ section {
 
 @keyframes corner-sticker-pulse {
     0%, 100% {
-        box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+        box-shadow: 0 4px 16px rgba(45, 82, 69, 0.4);
     }
     50% {
-        box-shadow: 0 6px 24px rgba(255, 107, 53, 0.6);
+        box-shadow: 0 6px 24px rgba(45, 82, 69, 0.6);
     }
 }
 
