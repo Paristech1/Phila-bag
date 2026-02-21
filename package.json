@@ -1,0 +1,9 @@
+{
+  "name": "phila-bag",
+  "version": "1.0.0",
+  "description": "PhilaBag - Empowering neighborhoods one block at a time",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx serve . -p 3000"
+  }
+}

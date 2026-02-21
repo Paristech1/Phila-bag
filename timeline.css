@@ -1,0 +1,238 @@
+/* ===================================
+   TIMELINE - PhilaBag Design System
+   Inspired by vertical timeline scroll
+   =================================== */
+
+.timeline-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--off-white);
+    overflow: hidden;
+}
+
+.timeline-list {
+    list-style: none;
+    position: relative;
+    margin: 50px auto;
+    padding: 0;
+    max-width: 900px;
+}
+
+/* Center vertical line */
+.timeline-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    margin-left: -1.5px;
+    background: linear-gradient(to bottom, var(--forest-green), var(--sage-green));
+    border-radius: 2px;
+}
+
+/* Year badges */
+.timeline-badge-year {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--forest-green);
+    color: var(--light-text);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    z-index: 5;
+    box-shadow: var(--shadow-md);
+    letter-spacing: 1px;
+}
+
+.timeline-year {
+    display: block;
+}
+
+.timeline-movement-top {
+    height: 60px;
+    margin-bottom: 2rem;
+}
+
+/* Timeline item dots on the line */
+.timeline-badge.center-left,
+.timeline-badge.center-right {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--forest-green);
+    border: 3px solid var(--off-white);
+    border-radius: 50%;
+    z-index: 6;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-smooth);
+}
+
+.timeline-badge.center-left {
+    left: 50%;
+    margin-left: -10px;
+}
+
+.timeline-badge.center-right {
+    left: 50%;
+    margin-left: -10px;
+}
+
+.timeline-movement:hover .timeline-badge.center-left,
+.timeline-movement:hover .timeline-badge.center-right {
+    background-color: var(--sage-green);
+    transform: scale(1.2);
+}
+
+/* Timeline movement / item */
+.timeline-movement {
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.timeline-movement:last-child {
+    margin-bottom: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+/* Panels - alternating left/right */
+.timeline-panel {
+    width: calc(50% - 40px);
+    padding: 0;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background-color: var(--cream);
+    border: 1px solid rgba(45, 82, 69, 0.15);
+    transition: all var(--transition-smooth);
+}
+
+.timeline-panel:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.timeline-panel-left {
+    float: left;
+    text-align: right;
+}
+
+.timeline-panel-right {
+    float: right;
+    text-align: left;
+}
+
+.timeline-panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.timeline-img-wrap {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: var(--warm-beige);
+}
+
+.timeline-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+}
+
+.timeline-panel:hover .timeline-img-wrap img {
+    transform: scale(1.05);
+}
+
+.timeline-text-wrap {
+    padding: var(--spacing-md);
+}
+
+.timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--forest-green);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--sage-green);
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.timeline-text-wrap p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--dark-text);
+    margin: 0;
+}
+
+/* Clearfix for alternating layout */
+.timeline-movement::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* Scroll animation - hidden until in view */
+.timeline-movement.anim {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-movement.anim.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================================
+   RESPONSIVE - Mobile
+   =================================== */
+@media (max-width: 768px) {
+    .timeline-list::before {
+        left: 20px;
+        margin-left: 0;
+    }
+
+    .timeline-badge-year {
+        left: 20px;
+        transform: none;
+    }
+
+    .timeline-badge.center-left,
+    .timeline-badge.center-right {
+        left: 20px;
+        margin-left: 0;
+    }
+
+    .timeline-panel,
+    .timeline-panel-left,
+    .timeline-panel-right {
+        width: calc(100% - 50px);
+        float: none;
+        margin-left: 50px;
+        text-align: left;
+    }
+
+    .timeline-img-wrap {
+        height: 180px;
+    }
+}
