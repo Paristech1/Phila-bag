@@ -45,8 +45,8 @@
 }
 
 html {
-    scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden; /* Firefox fix: prevents body from becoming scroll root */
 }
 
 body {
@@ -54,7 +54,6 @@ body {
     color: var(--dark-text);
     background-color: var(--cream);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 .container {

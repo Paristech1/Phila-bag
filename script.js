@@ -213,12 +213,15 @@ if (carouselTrack && prevBtn && nextBtn) {
 // ===================================
 
 window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
+    // Firefox fix: set transition BEFORE opacity so Firefox animates correctly.
+    // Double-rAF ensures the browser commits one paint before triggering the fade.
     document.body.style.transition = 'opacity 0.5s ease-in';
-
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
+    document.body.style.opacity = '0';
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.body.style.opacity = '1';
+        });
+    });
 });
 
 // ===================================
