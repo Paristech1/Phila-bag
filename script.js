@@ -129,6 +129,7 @@ if (carouselTrack && prevBtn && nextBtn) {
     }
 
     function updateCarousel() {
+        if (!cards.length) return;
         const cardsPerView = getCardsPerView();
         const cardWidth = cards[0].offsetWidth;
         const gap = 32; // 2rem in pixels

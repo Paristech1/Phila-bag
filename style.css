@@ -177,51 +177,7 @@ body {
     }
 }
 
-/* Dropdown Menu Styles */
-.nav-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--forest-green);
-    list-style: none;
-    padding: var(--spacing-xs) 0;
-    margin: 0;
-    min-width: 160px;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-smooth);
-    z-index: 1000;
-}
-
-.nav-dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-link {
-    display: block;
-    color: var(--light-text);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    padding: var(--spacing-xs) var(--spacing-md);
-    transition: all var(--transition-fast);
-}
-
-.dropdown-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--warm-beige);
-}
-
+/* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -600,7 +556,7 @@ body {
     margin: 0 auto;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     .donate-feature-image {
         max-width: 320px;
         max-height: 320px;
@@ -931,7 +887,7 @@ body {
 /* ===================================
    RESPONSIVE DESIGN
    =================================== */
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -969,7 +925,7 @@ body {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 375px) {
     :root {
         --spacing-lg: 3rem;
         --spacing-xl: 4rem;
@@ -1137,7 +1093,7 @@ section {
 }
 
 /* Responsive carousel */
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     .social-post-card {
         min-width: calc(50% - 1rem);
     }
@@ -1147,7 +1103,7 @@ section {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 375px) {
     .social-post-card {
         min-width: 100%;
     }
@@ -1447,7 +1403,7 @@ section {
 }
 
 /* Responsive adjustments */
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     .ticker-text {
         font-size: 0.9rem;
     }
