@@ -363,8 +363,8 @@ body {
 }
 
 .earth-day-button {
-    background-color: var(--forest-green);
-    color: var(--light-text);
+    background-color: #FFC300;
+    color: var(--deep-forest);
     font-family: var(--font-display);
     font-size: 0.95rem;
     font-weight: 700;
@@ -376,12 +376,13 @@ body {
     box-shadow: var(--shadow-md);
     letter-spacing: 1px;
     animation: fadeIn 1s ease-out 0.6s backwards;
-    border: 2px solid var(--forest-green);
+    border: 2px solid #FFC300;
 }
 
 .earth-day-button:hover {
-    background-color: var(--sage-green);
-    border-color: var(--sage-green);
+    background-color: #FFD700;
+    border-color: #FFD700;
+    color: var(--deep-forest);
     box-shadow: var(--shadow-lg);
     animation: spring-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform: scale(1.05);
