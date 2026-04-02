@@ -331,6 +331,7 @@ body {
     box-shadow: var(--shadow-lg);
     letter-spacing: 1px;
     animation: fadeIn 1s ease-out 0.4s backwards;
+    text-decoration: none;
 }
 
 @keyframes fadeIn {
@@ -351,6 +352,47 @@ body {
 
 .cta-button:active {
     transform: translateY(-2px) scale(1.02);
+}
+
+.hero-ctas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.earth-day-button {
+    background-color: var(--forest-green);
+    color: var(--light-text);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-out 0.6s backwards;
+    border: 2px solid var(--forest-green);
+}
+
+.earth-day-button:hover {
+    background-color: var(--sage-green);
+    border-color: var(--sage-green);
+    box-shadow: var(--shadow-lg);
+    animation: spring-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: scale(1.05);
+}
+
+@keyframes spring-bounce {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.1); }
+    60% { transform: scale(0.95); }
+    80% { transform: scale(1.05); }
+    100% { transform: scale(1.05); }
 }
 
 /* ===================================
