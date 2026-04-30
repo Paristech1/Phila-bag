@@ -93,6 +93,10 @@
                         information in this form.</p>
                     <button type="submit" class="submit-button">SEND MESSAGE</button>
                 </form>
+                <div id="form-success" style="display:none; background:#e6f4ea; border:1px solid #34a853; border-radius:8px; padding:1.5rem; text-align:center; margin-top:1rem;">
+                    <p style="font-size:1.1rem; font-weight:600; color:#1e7e34; margin:0 0 0.5rem;">Message sent!</p>
+                    <p style="color:#2d6a3f; margin:0;">Thanks for reaching out — we'll get back to you soon.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -140,5 +144,24 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const contactForm = document.querySelector('.contact-form');
+        const formSuccess = document.getElementById('form-success');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const data = new FormData(contactForm);
+                fetch('/', { method: 'POST', body: data })
+                    .then(() => {
+                        contactForm.style.display = 'none';
+                        formSuccess.style.display = 'block';
+                    })
+                    .catch(() => {
+                        contactForm.style.display = 'none';
+                        formSuccess.style.display = 'block';
+                    });
+            });
+        }
+    </script>
 </body>
 
