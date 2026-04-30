@@ -74,7 +74,12 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" name="contact" method="POST" action="/contact" data-netlify="true"
+                    data-netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </p>
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -84,6 +89,8 @@
                     <div class="form-group">
                         <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                     </div>
+                    <p style="font-size: 0.9rem; color: #666;">Please do not include sensitive personal or financial
+                        information in this form.</p>
                     <button type="submit" class="submit-button">SEND MESSAGE</button>
                 </form>
             </div>
