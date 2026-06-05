@@ -362,7 +362,7 @@ body {
     margin-top: 1rem;
 }
 
-.earth-day-button {
+.event-button {
     background-color: #FFC300;
     color: var(--deep-forest);
     font-family: var(--font-display);
@@ -379,7 +379,7 @@ body {
     border: 2px solid #FFC300;
 }
 
-.earth-day-button:hover {
+.event-button:hover {
     background-color: #FFD700;
     border-color: #FFD700;
     color: var(--deep-forest);
