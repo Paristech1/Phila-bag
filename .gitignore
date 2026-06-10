@@ -1,1 +1,6 @@
-Phila-bag/
+# macOS Finder metadata — never deploy these
+.DS_Store
+**/.DS_Store
+
+# Dependencies (if ever added)
+node_modules/
