@@ -1135,34 +1135,49 @@ section {
     right: 0;
 }
 
-/* Responsive carousel */
+/* Responsive carousel: one full-width card per view, native swipe scrolling */
 @media (max-width: 768px) {
-    .social-post-card {
-        min-width: calc(50% - 1rem);
-    }
-
     .social-carousel-container {
-        padding: 0 50px;
+        padding: 0 1rem;
     }
-}
 
-@media (max-width: 375px) {
+    .social-carousel {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .social-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .social-carousel-track {
+        gap: 1rem;
+    }
+
     .social-post-card {
         min-width: 100%;
+        scroll-snap-align: start;
     }
 
-    .social-carousel-container {
-        padding: 0 45px;
+    .social-post-embed {
+        padding: 1rem 0.5rem;
     }
 
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
+    /* the embeds set inline min-widths (326px/288px) that overflow small phones */
+    .social-post-embed .instagram-media,
+    .social-post-embed .tiktok-embed {
+        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
-    .carousel-btn svg {
-        width: 20px;
-        height: 20px;
+    .social-post-embed .fb-page,
+    .social-post-embed .fb-page span,
+    .social-post-embed .fb-page iframe {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
