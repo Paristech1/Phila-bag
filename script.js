@@ -113,13 +113,18 @@ updateScrollState();
 // ===================================
 
 const carouselTrack = document.querySelector('.social-carousel-track');
+const carouselScroller = document.querySelector('.social-carousel');
 const prevBtn = document.querySelector('.carousel-prev');
 const nextBtn = document.querySelector('.carousel-next');
 
-if (carouselTrack && prevBtn && nextBtn) {
+if (carouselTrack && carouselScroller && prevBtn && nextBtn) {
     const cards = document.querySelectorAll('.social-post-card');
     let currentIndex = 0;
     let autoScrollInterval;
+
+    function isMobileLayout() {
+        return window.innerWidth <= 768;
+    }
 
     function getCardsPerView() {
         const width = window.innerWidth;
@@ -130,38 +135,32 @@ if (carouselTrack && prevBtn && nextBtn) {
 
     function updateCarousel() {
         if (!cards.length) return;
-        const cardsPerView = getCardsPerView();
-        const cardWidth = cards[0].offsetWidth;
-        const gap = 32; // 2rem in pixels
-        const offset = currentIndex * (cardWidth + gap);
-        carouselTrack.style.transform = `translateX(-${offset}px)`;
+        if (isMobileLayout()) {
+            // Drive the CSS scroll container
+            const cardWidth = carouselScroller.clientWidth;
+            carouselScroller.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+        } else {
+            const cardWidth = cards[0].offsetWidth;
+            const gap = 32;
+            carouselTrack.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+        }
     }
 
     function nextSlide() {
-        const cardsPerView = getCardsPerView();
-        const maxIndex = cards.length - cardsPerView;
+        const maxIndex = cards.length - getCardsPerView();
         currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
         updateCarousel();
     }
 
     function prevSlide() {
-        const cardsPerView = getCardsPerView();
-        const maxIndex = cards.length - cardsPerView;
+        const maxIndex = cards.length - getCardsPerView();
         currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
         updateCarousel();
     }
 
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetAutoScroll();
-    });
+    nextBtn.addEventListener('click', () => { nextSlide(); resetAutoScroll(); });
+    prevBtn.addEventListener('click', () => { prevSlide(); resetAutoScroll(); });
 
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetAutoScroll();
-    });
-
-    // Auto-scroll every 5 seconds
     function startAutoScroll() {
         autoScrollInterval = setInterval(nextSlide, 5000);
     }
@@ -171,40 +170,19 @@ if (carouselTrack && prevBtn && nextBtn) {
         startAutoScroll();
     }
 
-    // Handle window resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            updateCarousel();
-        }, 250);
+        resizeTimer = setTimeout(() => { currentIndex = 0; updateCarousel(); }, 250);
     });
 
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carouselTrack.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    carouselTrack.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        if (touchEndX < touchStartX - 50) {
-            nextSlide();
-            resetAutoScroll();
+    // Sync currentIndex when user swipes natively on mobile
+    carouselScroller.addEventListener('scrollend', () => {
+        if (isMobileLayout()) {
+            currentIndex = Math.round(carouselScroller.scrollLeft / carouselScroller.clientWidth);
         }
-        if (touchEndX > touchStartX + 50) {
-            prevSlide();
-            resetAutoScroll();
-        }
-    }
+    });
 
-    // Initialize
     updateCarousel();
     startAutoScroll();
 }
