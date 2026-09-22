@@ -33,6 +33,10 @@
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
     --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+
+    /* Radii & aliases referenced by page styles */
+    --radius-md: 16px;
+    --dark-green: var(--forest-green);
 }
 
 /* ===================================
@@ -206,10 +210,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--forest-green);
+    background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('images/heropic.JPG');
+    background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%),
+        image-set(url('images/opt/heropic-1600.webp') type('image/webp'), url('images/heropic.JPG') type('image/jpeg'));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
+}
+
+/* Fixed backgrounds are unsupported on iOS (renders a blurry, page-sized zoom)
+   and force full-screen repaints while scrolling on phones/tablets */
+@media (max-width: 768px), (hover: none) {
+    .hero {
+        background-attachment: scroll;
+    }
 }
 
 .hero::before {
@@ -422,7 +438,8 @@ body {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: url('images/about_community_circle1.JPG');
+    background-image: url('images/about_community_circle1.JPG');
+    background-image: image-set(url('images/opt/about_community_circle1-1200.webp') type('image/webp'), url('images/about_community_circle1.JPG') type('image/jpeg'));
     background-size: cover;
     background-position: center;
     box-shadow: var(--shadow-xl);
@@ -711,6 +728,17 @@ body {
     transition: transform var(--transition-smooth);
 }
 
+.news-image--toydrive {
+    background: url('images/toydrive.jpg') center/cover no-repeat, linear-gradient(135deg, var(--sage-green) 0%, var(--forest-green) 100%);
+    background: image-set(url('images/opt/toydrive-1080.webp') type('image/webp'), url('images/toydrive.jpg') type('image/jpeg')) center/cover no-repeat,
+        linear-gradient(135deg, var(--sage-green) 0%, var(--forest-green) 100%);
+}
+
+.news-image--workshop {
+    background: url('images/YouthWorkshopSeries.JPG') center/cover no-repeat;
+    background: image-set(url('images/opt/YouthWorkshopSeries-1200.webp') type('image/webp'), url('images/YouthWorkshopSeries.JPG') type('image/jpeg')) center/cover no-repeat;
+}
+
 .news-card:hover .news-image {
     transform: scale(1.05);
 }
@@ -856,6 +884,22 @@ body {
     background-color: var(--sage-green);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+}
+
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.form-error {
+    margin-top: var(--spacing-sm);
+    color: #a12a2a;
+    font-size: 0.95rem;
+}
+
+.form-error a {
+    color: inherit;
+    text-decoration: underline;
 }
 
 /* ===================================
@@ -1093,6 +1137,14 @@ section {
     justify-content: center;
 }
 
+/* the embeds set inline min-widths (326px/288px) wider than a 3-up card on tablets/small laptops */
+.social-post-embed .instagram-media,
+.social-post-embed .tiktok-embed {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -1163,14 +1215,6 @@ section {
 
     .social-post-embed {
         padding: 1rem 0.5rem;
-    }
-
-    /* the embeds set inline min-widths (326px/288px) that overflow small phones */
-    .social-post-embed .instagram-media,
-    .social-post-embed .tiktok-embed {
-        min-width: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
     }
 
     .social-post-embed .fb-page,
@@ -1419,6 +1463,16 @@ section {
     box-shadow: 0 4px 16px rgba(45, 82, 69, 0.4);
     transition: all var(--transition-smooth);
     white-space: nowrap;
+}
+
+.impact-sticker-corner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 6px 24px rgba(45, 82, 69, 0.6);
+    opacity: 0;
+    pointer-events: none;
     animation: corner-sticker-pulse 2s ease-in-out infinite;
 }
 
@@ -1434,10 +1488,10 @@ section {
 
 @keyframes corner-sticker-pulse {
     0%, 100% {
-        box-shadow: 0 4px 16px rgba(45, 82, 69, 0.4);
+        opacity: 0;
     }
     50% {
-        box-shadow: 0 6px 24px rgba(45, 82, 69, 0.6);
+        opacity: 1;
     }
 }
 
@@ -1500,5 +1554,23 @@ section {
     
     .about-section .container {
         position: relative;
+    }
+}
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero {
+        background-attachment: scroll;
     }
 }

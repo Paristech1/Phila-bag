@@ -10,16 +10,22 @@
     <meta name="description"
         content="Empowering neighborhoods one block at a time. We believe in local action and the power of community bonds. Join us in building stronger blocks together.">
     <meta property="og:description" content="Empowering neighborhoods one block at a time. Join us in building stronger blocks together for a healthier watershed and community.">
-    <meta property="og:image" content="https://philabag.org/images/philabag_logo_new.png">
+    <meta property="og:image" content="https://philabag.org/images/heropic.JPG">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="1066">
+    <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="preload" as="image" href="images/heropic.JPG" fetchpriority="high">
-    <link rel="stylesheet" href="style.css?v=5">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preload" as="image" href="images/opt/heropic-1600.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2d5245">
 </head>
 
 <body>
@@ -28,7 +34,10 @@
         <div class="container nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/philabag_logo_new.png" alt="PhilaBag" class="logo-img">
+                    <picture>
+                        <source srcset="images/opt/philabag_logo_new.webp" type="image/webp">
+                        <img src="images/philabag_logo_new.png" alt="PhilaBag" class="logo-img" width="251" height="70">
+                    </picture>
                 </a>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -49,8 +58,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home"
-        style="background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('images/heropic.JPG');">
+    <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -58,7 +66,7 @@
                 <span class="title-line">PHILADELPHIA'S <span class="highlight-watershed">WATERSHED</span></span>
             </h1>
             <div class="hero-ctas">
-                <button class="cta-button">JOIN US</button>
+                <a href="contact.html" class="cta-button">JOIN US</a>
                 <a href="https://www.eventbrite.com/e/fathers-deserve-healing-too-community-clean-up-cookout-epigenetics-talk-tickets-1990056104379?aff=ebdssbdestsearch" class="event-button" target="_blank" rel="noopener noreferrer">Fathers Deserve Healing</a>
             </div>
         </div>
@@ -69,7 +77,7 @@
         <div class="container" style="position: relative;">
             <div class="about-grid">
                 <div class="about-image">
-                    <div class="image-circle"></div>
+                    <div class="image-circle" role="img" aria-label="PhilaBag community circle gathering"></div>
                 </div>
                 <div class="about-content">
                     <h2 class="section-title">ABOUT</h2>
@@ -101,25 +109,37 @@
             <div class="impact-grid">
                 <div class="impact-card">
                     <div class="impact-icon">
-                        <img loading="lazy" decoding="async" src="images/greenerspaces.JPG" alt="Greener Spaces - Community Garden">
+                        <picture>
+                            <source type="image/webp" srcset="images/opt/greenerspaces-480.webp 480w, images/opt/greenerspaces-800.webp 800w" sizes="225px">
+                            <img loading="lazy" decoding="async" src="images/greenerspaces.JPG" alt="Greener Spaces - Community Garden" width="150" height="150">
+                        </picture>
                     </div>
                     <h3 class="impact-title">GREENER<br>SPACES</h3>
                 </div>
                 <div class="impact-card">
                     <div class="impact-icon">
-                        <img loading="lazy" decoding="async" src="images/smallcircle2.JPG" alt="Community Power - United Community">
+                        <picture>
+                            <source type="image/webp" srcset="images/opt/smallcircle2-480.webp 480w, images/opt/smallcircle2-800.webp 800w" sizes="225px">
+                            <img loading="lazy" decoding="async" src="images/smallcircle2.JPG" alt="Community Power - United Community" width="150" height="150">
+                        </picture>
                     </div>
                     <h3 class="impact-title">COMMUNITY<br>POWER</h3>
                 </div>
                 <div class="impact-card">
                     <div class="impact-icon">
-                        <img loading="lazy" decoding="async" src="images/youthdev.JPG" alt="Community Power - Youth Development">
+                        <picture>
+                            <source type="image/webp" srcset="images/opt/youthdev-480.webp 480w, images/opt/youthdev-800.webp 800w" sizes="225px">
+                            <img loading="lazy" decoding="async" src="images/youthdev.JPG" alt="Community Power - Youth Development" width="150" height="150">
+                        </picture>
                     </div>
                     <h3 class="impact-title">YOUTH<br>OUTREACH</h3>
                 </div>
                 <div class="impact-card">
                     <div class="impact-icon">
-                        <img loading="lazy" decoding="async" src="images/smallcircle4.JPG" alt="Voice in Needs Homes - Community Support">
+                        <picture>
+                            <source type="image/webp" srcset="images/opt/smallcircle4-480.webp 480w, images/opt/smallcircle4-800.webp 800w" sizes="225px">
+                            <img loading="lazy" decoding="async" src="images/smallcircle4.JPG" alt="Voice in Needs Homes - Community Support" width="150" height="150">
+                        </picture>
                     </div>
                     <h3 class="impact-title">ELEVATING HEALTH<br>COMMUNITIES</h3>
                 </div>
@@ -296,17 +316,17 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-success="home-form-success">
                     <input type="hidden" name="form-name" value="contact">
-                    <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                    <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" aria-label="Your name" autocomplete="name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" aria-label="Your email" autocomplete="email" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" aria-label="Your message" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">SEND MESSAGE</button>
                 </form>
@@ -324,7 +344,10 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html">
-                        <img loading="lazy" decoding="async" src="images/philabag_logo_new.png" alt="PhilaBag" class="footer-logo-img">
+                        <picture>
+                            <source srcset="images/opt/philabag_logo_new.webp" type="image/webp">
+                            <img loading="lazy" decoding="async" src="images/philabag_logo_new.png" alt="PhilaBag" class="footer-logo-img" width="215" height="60">
+                        </picture>
                     </a>
                 </div>
                 <div class="footer-social">
@@ -360,38 +383,11 @@
         </div>
     </footer>
 
-    <!-- Social Media Embed Scripts -->
-    <!-- Facebook SDK -->
+    <!-- Social embed SDKs (Facebook, Instagram, TikTok) are lazy-loaded by script.js
+         when the carousel scrolls near the viewport -->
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 
-    <!-- Instagram Embed Script -->
-    <script async src="https://www.instagram.com/embed.js"></script>
-
-    <!-- TikTok Embed Script -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
-
-    <script src="script.js"></script>
-    <script>
-        const homeForm = document.querySelector('#contact .contact-form');
-        const homeFormSuccess = document.getElementById('home-form-success');
-        if (homeForm) {
-            homeForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const data = new FormData(homeForm);
-                fetch('/', { method: 'POST', body: data })
-                    .then(() => {
-                        homeForm.style.display = 'none';
-                        homeFormSuccess.style.display = 'block';
-                    })
-                    .catch(() => {
-                        homeForm.style.display = 'none';
-                        homeFormSuccess.style.display = 'block';
-                    });
-            });
-        }
-    </script>
+    <script src="script.js?v=6"></script>
 </body>
 
 </html>

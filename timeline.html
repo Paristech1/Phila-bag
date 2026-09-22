@@ -10,17 +10,23 @@
     <meta name="description"
         content="Explore PhilaBag's timeline of community impact, events, and milestones in Philadelphia's watershed.">
     <meta property="og:description" content="Explore PhilaBag's timeline of community impact, events, and milestones in Philadelphia's watershed.">
-    <meta property="og:image" content="https://philabag.org/images/philabag_logo_new.png">
+    <meta property="og:image" content="https://philabag.org/images/heropic.JPG">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="1066">
+    <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="preload" as="image" href="images/heropic.JPG" fetchpriority="high">
-    <link rel="stylesheet" href="style.css?v=5">
-    <link rel="stylesheet" href="timeline.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preload" as="image" href="images/opt/heropic-1600.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="timeline.css?v=6">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2d5245">
 </head>
 
 <body>
@@ -29,7 +35,10 @@
         <div class="container nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/philabag_logo_new.png" alt="PhilaBag" class="logo-img">
+                    <picture>
+                        <source srcset="images/opt/philabag_logo_new.webp" type="image/webp">
+                        <img src="images/philabag_logo_new.png" alt="PhilaBag" class="logo-img" width="251" height="70">
+                    </picture>
                 </a>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -50,8 +59,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero"
-        style="background-image: linear-gradient(135deg, rgba(74, 107, 92, 0.7) 0%, rgba(45, 82, 69, 0.8) 100%), url('images/heropic.JPG');">
+    <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
@@ -78,7 +86,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_5574.jpg" alt="MLK Service Day - PhilaBag &amp; Agape">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/mlk-IMG_5574-480.webp 480w, images/opt/timeline/mlk-IMG_5574-800.webp 800w, images/opt/timeline/mlk-IMG_5574-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_5574.jpg" alt="MLK Service Day - PhilaBag &amp; Agape" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">MLK Service Day</h3>
@@ -96,7 +107,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_5575.jpg" alt="MLK Service Day - PhilaBag &amp; Agape">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/mlk-IMG_5575-480.webp 480w, images/opt/timeline/mlk-IMG_5575-800.webp 800w, images/opt/timeline/mlk-IMG_5575-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_5575.jpg" alt="MLK Service Day - PhilaBag &amp; Agape" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">MLK Service Day</h3>
@@ -114,7 +128,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_7232.jpg" alt="MLK Service Day - PhilaBag &amp; Agape">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/mlk-IMG_7232-480.webp 480w, images/opt/timeline/mlk-IMG_7232-800.webp 800w, images/opt/timeline/mlk-IMG_7232-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_7232.jpg" alt="MLK Service Day - PhilaBag &amp; Agape" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">MLK Service Day</h3>
@@ -132,7 +149,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_8488.jpg" alt="MLK Service Day - PhilaBag &amp; Agape">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/mlk-IMG_8488-480.webp 480w, images/opt/timeline/mlk-IMG_8488-800.webp 800w, images/opt/timeline/mlk-IMG_8488-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A19%3A26%20MLK%20Service%20Day%20-%20Philabag%20%26%20Agape/IMG_8488.jpg" alt="MLK Service Day - PhilaBag &amp; Agape" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">MLK Service Day</h3>
@@ -150,7 +170,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8398.jpg" alt="Community Circle - January 17, 2026">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/circle-IMG_8398-480.webp 480w, images/opt/timeline/circle-IMG_8398-800.webp 800w, images/opt/timeline/circle-IMG_8398-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8398.jpg" alt="Community Circle - January 17, 2026" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Circle</h3>
@@ -168,7 +191,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8399.jpg" alt="Community Circle - January 17, 2026">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/circle-IMG_8399-480.webp 480w, images/opt/timeline/circle-IMG_8399-800.webp 800w, images/opt/timeline/circle-IMG_8399-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8399.jpg" alt="Community Circle - January 17, 2026" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Circle</h3>
@@ -186,7 +212,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8406.jpg" alt="Community Circle - January 17, 2026">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/circle-IMG_8406-480.webp 480w, images/opt/timeline/circle-IMG_8406-800.webp 800w, images/opt/timeline/circle-IMG_8406-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8406.jpg" alt="Community Circle - January 17, 2026" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Circle</h3>
@@ -204,7 +233,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8410.jpg" alt="Community Circle - January 17, 2026">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/timeline/circle-IMG_8410-480.webp 480w, images/opt/timeline/circle-IMG_8410-800.webp 800w, images/opt/timeline/circle-IMG_8410-1050.webp 1050w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="time_line_imgs/1%3A17%3A26/IMG_8410.jpg" alt="Community Circle - January 17, 2026" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Circle</h3>
@@ -229,7 +261,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/YouthWorkshopSeries.JPG" alt="Youth Workshop Series">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/YouthWorkshopSeries-480.webp 480w, images/opt/YouthWorkshopSeries-800.webp 800w, images/opt/YouthWorkshopSeries-1200.webp 1200w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/YouthWorkshopSeries.JPG" alt="Youth Workshop Series" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Youth Workshop Series</h3>
@@ -247,7 +282,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/youthdev.JPG" alt="Youth development">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/youthdev-480.webp 480w, images/opt/youthdev-800.webp 800w, images/opt/youthdev-1200.webp 1200w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/youthdev.JPG" alt="Youth development" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Youth Outreach</h3>
@@ -265,7 +303,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/toydrive.jpg" alt="Toy drive">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/toydrive-480.webp 480w, images/opt/toydrive-800.webp 800w, images/opt/toydrive-1080.webp 1080w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/toydrive.jpg" alt="Toy drive" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Toy Drive</h3>
@@ -283,7 +324,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/donation.JPG" alt="Community support">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/donation-480.webp 480w, images/opt/donation-800.webp 800w, images/opt/donation-1170.webp 1170w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/donation.JPG" alt="Community support" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Growing Community Support</h3>
@@ -301,7 +345,10 @@
                         <div class="timeline-panel timeline-panel-left">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/smallcircle2.JPG" alt="Community power">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/smallcircle2-480.webp 480w, images/opt/smallcircle2-800.webp 800w, images/opt/smallcircle2-1200.webp 1200w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/smallcircle2.JPG" alt="Community power" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Community Power</h3>
@@ -319,7 +366,10 @@
                         <div class="timeline-panel timeline-panel-right">
                             <div class="timeline-panel-content">
                                 <div class="timeline-img-wrap">
-                                    <img loading="lazy" decoding="async" src="images/smallcircle4.JPG" alt="Elevating health communities">
+                                    <picture>
+                                    <source type="image/webp" srcset="images/opt/smallcircle4-480.webp 480w, images/opt/smallcircle4-800.webp 800w, images/opt/smallcircle4-1200.webp 1200w" sizes="(max-width: 768px) calc(100vw - 114px), 400px">
+                                    <img loading="lazy" decoding="async" src="images/smallcircle4.JPG" alt="Elevating health communities" width="400" height="200">
+                                </picture>
                                 </div>
                                 <div class="timeline-text-wrap">
                                     <h3 class="timeline-title">Elevating Health Communities</h3>
@@ -340,7 +390,10 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html">
-                        <img loading="lazy" decoding="async" src="images/philabag_logo_new.png" alt="PhilaBag" class="footer-logo-img">
+                        <picture>
+                            <source srcset="images/opt/philabag_logo_new.webp" type="image/webp">
+                            <img loading="lazy" decoding="async" src="images/philabag_logo_new.png" alt="PhilaBag" class="footer-logo-img" width="215" height="60">
+                        </picture>
                     </a>
                 </div>
                 <div class="footer-social">
@@ -376,8 +429,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="timeline.js"></script>
+    <script src="script.js?v=6"></script>
+    <script src="timeline.js?v=6"></script>
 </body>
 
 </html>

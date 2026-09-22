@@ -28,3 +28,5 @@ Empowering neighborhoods one block at a time. We believe in local action and the
 - `style.css` – Styles
 - `script.js` – JavaScript
 - `images/` – Assets
+- `images/opt/` – WebP versions of the photos at several widths (`name-800.webp`, etc.). Pages load these first and fall back to the original JPEGs. When you add or replace a photo, add matching WebP files here too, or reference the JPEG directly.
+- `images/icons/` – favicon and app icons (`manifest.json`)

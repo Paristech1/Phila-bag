@@ -6,10 +6,12 @@
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navMenu = document.getElementById('navMenu');
 
-if (mobileMenuToggle) {
+if (mobileMenuToggle && navMenu) {
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
     mobileMenuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
+        const open = navMenu.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active', open);
+        mobileMenuToggle.setAttribute('aria-expanded', String(open));
     });
 }
 
@@ -17,82 +19,51 @@ if (mobileMenuToggle) {
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
+        if (!navMenu || !mobileMenuToggle) return;
         navMenu.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
     });
 });
-
-// ===================================
-// NAVBAR SCROLL EFFECT
-// ===================================
 
 // ===================================
 // OPTIMIZED SCROLL HANDLER
 // ===================================
 
 const navbar = document.getElementById('navbar');
-const sections = document.querySelectorAll('section[id]');
-let lastScrollTop = 0;
+
+// On the homepage, highlight the nav link for the section being viewed.
+// Other pages keep the active link set in their HTML.
+const sectionLinks = {
+    home: 'index.html',
+    about: 'about.html',
+    'why-it-matters': 'why-it-matters.html',
+    news: 'news.html',
+    contact: 'contact.html'
+};
+const homeSections = document.getElementById('home')
+    ? [...document.querySelectorAll('section[id]')].filter(section => sectionLinks[section.id])
+    : [];
 let ticking = false;
 
 function updateScrollState() {
     const scrollY = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
 
     // Navbar Scroll Effect
-    if (scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    if (navbar) navbar.classList.toggle('scrolled', scrollY > 100);
 
-    // Active Navigation Highlighting
-    let currentSection = '';
-    sections.forEach((section, index) => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        // Check if we're in this section
-        // For the last section, also check if we're near the bottom of the page
-        const isLastSection = index === sections.length - 1;
-        const isInSection = scrollY >= sectionTop && (isLastSection ? scrollY < sectionTop + sectionHeight + 200 : scrollY < sectionTop + sectionHeight);
-
-        if (isInSection && navLink) {
-            currentSection = sectionId;
+    if (homeSections.length) {
+        let current = homeSections[0].id;
+        homeSections.forEach(section => {
+            if (scrollY >= section.offsetTop - 100) current = section.id;
+        });
+        // Near the bottom of the page, activate the last section
+        if (scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) {
+            current = homeSections[homeSections.length - 1].id;
         }
-    });
-
-    // Update active state for all nav links
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (currentSection && link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-
-    // If we're near the bottom of the page, activate the last section
-    if (scrollY + windowHeight >= documentHeight - 50) {
-        const lastSection = sections[sections.length - 1];
-        if (lastSection) {
-            // Optionally update currentSection here if logic requires
-        }
-    }
-
-    // Update active nav link (Legacy support if needed or additional logic)
-    if (currentSection) {
-        // Special case: if section is "news" and we're on homepage, check for news.html link
-        if (currentSection === 'news') {
-            const isHomePage = window.location.pathname.includes('index.html') || 
-                              window.location.pathname === '/' || 
-                              window.location.pathname.endsWith('/');
-            if (isHomePage) {
-                const newsLink = document.querySelector(`.nav-link[href="news.html"]`);
-                if (newsLink) newsLink.classList.add('active');
-            }
-        }
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === sectionLinks[current]);
+        });
     }
 
     ticking = false;
@@ -103,9 +74,9 @@ window.addEventListener('scroll', () => {
         window.requestAnimationFrame(updateScrollState);
         ticking = true;
     }
-});
+}, { passive: true });
 
-// Initial call to set active state on page load
+// Initial call to set state on page load
 updateScrollState();
 
 // ===================================
@@ -116,29 +87,30 @@ const carouselTrack = document.querySelector('.social-carousel-track');
 const carouselScroller = document.querySelector('.social-carousel');
 const prevBtn = document.querySelector('.carousel-prev');
 const nextBtn = document.querySelector('.carousel-next');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (carouselTrack && carouselScroller && prevBtn && nextBtn) {
     const cards = document.querySelectorAll('.social-post-card');
     let currentIndex = 0;
     let autoScrollInterval;
+    let carouselVisible = false;
 
     function isMobileLayout() {
         return window.innerWidth <= 768;
     }
 
+    // Must match the CSS: one card per view at <=768px, three above
     function getCardsPerView() {
-        const width = window.innerWidth;
-        if (width <= 640) return 1;
-        if (width <= 968) return 2;
-        return 3;
+        return isMobileLayout() ? 1 : 3;
     }
 
     function updateCarousel() {
         if (!cards.length) return;
         if (isMobileLayout()) {
             // Drive the CSS scroll container
+            carouselTrack.style.transform = '';
             const cardWidth = carouselScroller.clientWidth;
-            carouselScroller.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+            carouselScroller.scrollTo({ left: currentIndex * cardWidth, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         } else {
             const cardWidth = cards[0].offsetWidth;
             const gap = 32;
@@ -147,13 +119,13 @@ if (carouselTrack && carouselScroller && prevBtn && nextBtn) {
     }
 
     function nextSlide() {
-        const maxIndex = cards.length - getCardsPerView();
+        const maxIndex = Math.max(0, cards.length - getCardsPerView());
         currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
         updateCarousel();
     }
 
     function prevSlide() {
-        const maxIndex = cards.length - getCardsPerView();
+        const maxIndex = Math.max(0, cards.length - getCardsPerView());
         currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
         updateCarousel();
     }
@@ -161,17 +133,35 @@ if (carouselTrack && carouselScroller && prevBtn && nextBtn) {
     nextBtn.addEventListener('click', () => { nextSlide(); resetAutoScroll(); });
     prevBtn.addEventListener('click', () => { prevSlide(); resetAutoScroll(); });
 
+    // Only auto-advance while the carousel is on screen and the tab is visible
     function startAutoScroll() {
+        clearInterval(autoScrollInterval);
+        if (prefersReducedMotion || !carouselVisible || document.hidden) return;
         autoScrollInterval = setInterval(nextSlide, 5000);
     }
 
     function resetAutoScroll() {
-        clearInterval(autoScrollInterval);
         startAutoScroll();
     }
 
+    document.addEventListener('visibilitychange', startAutoScroll);
+
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+            carouselVisible = entries[0].isIntersecting;
+            startAutoScroll();
+        }).observe(carouselScroller);
+    } else {
+        carouselVisible = true;
+    }
+
+    // Mobile browsers fire resize when the address bar shows/hides while scrolling;
+    // only reset when the width actually changes
     let resizeTimer;
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', () => {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => { currentIndex = 0; updateCarousel(); }, 250);
     });
@@ -188,18 +178,79 @@ if (carouselTrack && carouselScroller && prevBtn && nextBtn) {
 }
 
 // ===================================
-// LOADING ANIMATION
+// LAZY-LOAD SOCIAL EMBED SDKS
 // ===================================
 
-window.addEventListener('load', () => {
-    // Firefox fix: set transition BEFORE opacity so Firefox animates correctly.
-    // Double-rAF ensures the browser commits one paint before triggering the fade.
-    document.body.style.transition = 'opacity 0.5s ease-in';
-    document.body.style.opacity = '0';
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            document.body.style.opacity = '1';
+// The Facebook, Instagram and TikTok SDKs are large; fetch them only when the
+// carousel gets close to the viewport instead of competing with the page load.
+if (carouselScroller) {
+    const embedScripts = [
+        { src: 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0', crossOrigin: 'anonymous' },
+        { src: 'https://www.instagram.com/embed.js' },
+        { src: 'https://www.tiktok.com/embed.js' }
+    ];
+    let embedsLoaded = false;
+
+    function loadEmbeds() {
+        if (embedsLoaded) return;
+        embedsLoaded = true;
+        embedScripts.forEach(({ src, crossOrigin }) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            if (crossOrigin) script.crossOrigin = crossOrigin;
+            document.body.appendChild(script);
         });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const embedObserver = new IntersectionObserver(entries => {
+            if (entries.some(entry => entry.isIntersecting)) {
+                embedObserver.disconnect();
+                loadEmbeds();
+            }
+        }, { rootMargin: '600px 0px' });
+        embedObserver.observe(carouselScroller);
+    } else {
+        window.addEventListener('load', loadEmbeds);
+    }
+}
+
+// ===================================
+// CONTACT FORMS (Netlify)
+// ===================================
+
+document.querySelectorAll('form.contact-form[data-netlify]').forEach(form => {
+    const success = document.getElementById(form.dataset.success);
+    const submitButton = form.querySelector('[type="submit"]');
+    const error = document.createElement('p');
+    error.className = 'form-error';
+    error.setAttribute('role', 'alert');
+    error.hidden = true;
+    error.innerHTML = 'Sorry, your message could not be sent. Please try again or email us at <a href="mailto:philabagnp@gmail.com">philabagnp@gmail.com</a>.';
+    form.appendChild(error);
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        error.hidden = true;
+        if (submitButton) submitButton.disabled = true;
+
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+        })
+            .then(response => {
+                if (!response.ok) throw new Error(`Form submission failed: ${response.status}`);
+                form.style.display = 'none';
+                if (success) success.style.display = 'block';
+            })
+            .catch(() => {
+                error.hidden = false;
+            })
+            .finally(() => {
+                if (submitButton) submitButton.disabled = false;
+            });
     });
 });
 

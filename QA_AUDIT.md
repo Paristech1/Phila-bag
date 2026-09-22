@@ -43,3 +43,16 @@
 ## 🚀 Deployment & Integrity
 - All changes have been staged, committed, and pushed to the `main` branch.
 - Final browser testing confirms no console errors and smooth navigation between all components.
+
+---
+
+## Performance & Bug Pass (September 2026)
+
+Page weight (local assets, desktop, before → after): home 2.5 MB → 0.7 MB, timeline 4.7 MB → 0.95 MB, about 0.76 MB → 0.44 MB, other pages ~0.45 MB → ~0.34 MB.
+
+- **Images:** WebP variants in `images/opt/` served through `<picture>`/`srcset` (and `image-set()` for CSS backgrounds), sized to at least 2–3× their on-screen size so retina screens stay sharp; the original JPEGs remain as fallbacks. Explicit `width`/`height` added to prevent layout shift.
+- **Social embeds:** the Facebook, Instagram and TikTok SDKs load only when the carousel nears the viewport.
+- **Fonts:** Google Fonts stylesheet no longer blocks rendering; unused Outfit weights dropped.
+- **Bugs fixed:** active nav link was cleared on every page by the scroll handler; the whole page blinked out and faded back in at `load`; contact forms showed "Message sent!" even when sending failed; the carousel reset to its first card whenever the mobile address bar hid, and slid to an empty slot at tablet widths; the home "JOIN US" button did nothing; the About page Instagram icon had a corrupted SVG path; the `favicon.ico` referenced on every page was missing (404); About page had the home page's `<title>`; `--radius-md`/`--dark-green` were used but never defined; two pages were missing `</html>`.
+- **Mobile:** fixed-attachment hero background (blurry on iOS, janky on phones) now scrolls normally on touch devices; the timeline uses IntersectionObserver instead of a scroll listener.
+- **Accessibility:** `prefers-reduced-motion` support, form `aria-label`s, iframe title, menu `aria-expanded`.
